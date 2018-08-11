@@ -1,0 +1,21 @@
+$mdc-theme-primary: #2a8e90;
+$mdc-theme-secondary: #4ac1bf;
+$mdc-theme-on-primary: white;
+$mdc-theme-on-secondary: #442b2d;
+
+@import 'preact-material-components/Theme/mdc-theme';
+@import 'preact-material-components/Card/mdc-card';
+@import 'preact-material-components/Button/mdc-button';
+@import 'preact-material-components/LinearProgress/mdc-linear-progress';
+@import 'preact-material-components/TextField/mdc-text-field';
+
+html, body {
+	padding: 0;
+	margin: 0;
+	background: #f2f2f2;
+	font-family: 'Helvetica Neue', arial, sans-serif;
+	font-weight: 400;
+	color: #444;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}

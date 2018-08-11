@@ -1,0 +1,62 @@
+{
+  "private": true,
+  "name": "zilliqa-preact",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "",
+    "build:ui": "preact build",
+    "build": "npm run build:ui; docker build -t zilliqa-faucet .",
+    "serve": "npm run build:docker; docker run -ti -p 8080:8080 zilliqa-faucet node index.js",
+    "dev": "npm run dev:api & npm run dev:ui",
+    "dev:ui": "preact watch",
+    "dev:api": "PORT=5000 npx nodemon ./src/server/index.js  --watch ./src/server",
+    "lint": "eslint src"
+  },
+  "eslintConfig": {
+    "extends": "eslint-config-synacor",
+    "rules": {
+      "no-unused-vars": "warn",
+      "react/sort-comp": "off",
+      "lines-around-comment": "off",
+      "react/prefer-stateless-function": "off"
+    }
+  },
+  "eslintIgnore": [
+    "build/*"
+  ],
+  "devDependencies": {
+    "eslint": "^4.5.0",
+    "eslint-config-synacor": "^1.1.0",
+    "if-env": "^1.0.0",
+    "node-sass": "^4.9.2",
+    "nodemon": "^1.18.3",
+    "preact-cli": "^2.0.0",
+    "preact-cli-plugin-async": "^1.0.0",
+    "preact-cli-plugin-fast-async": "^1.0.1",
+    "sass-loader": "^7.0.3"
+  },
+  "dependencies": {
+    "dotenv": "^6.0.0",
+    "koa": "^2.5.2",
+    "koa-bodyparser": "^4.2.1",
+    "koa-route": "^3.2.0",
+    "koa-static": "^5.0.0",
+    "preact": "^8.2.1",
+    "preact-compat": "^3.17.0",
+    "preact-google-recaptcha": "^0.2.1",
+    "preact-material-components": "^1.4.3",
+    "preact-router": "^2.5.5",
+    "react-google-recaptcha": "^0.14.0",
+    "recaptcha-validator": "^2.0.0",
+    "zilliqa-js": "^0.0.1"
+  },
+  "browserslist": [
+    "> 1%",
+    "IE >= 9",
+    "last 2 versions"
+  ],
+  "engines": {
+    "node": "8"
+  }
+}
