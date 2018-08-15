@@ -4,6 +4,7 @@ ENV NODE_ENV production
 ENV PORT 8080
 ENV NODE_URL https://api-scilla.zilliqa.com
 ENV PRIVATE_KEY ...
+ENV RECAPTCHA_SECRET ...
 ENV UI_BUILD_PATH /zilliqa-faucet-ui
 
 COPY ./src/server /zilliqa-faucet-api
