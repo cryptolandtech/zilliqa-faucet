@@ -85,7 +85,7 @@ export default class App extends Component {
 				<div style="max-width: 500px; margin: 30px auto;">
 					<Card>
 						<img src="assets/zil.svg" style="height: 180px; margin-top: 30px;"/>
-						<p>Network: Testnetv3</p>
+						<p style="padding: 0 30px">Network: Testnetv3</p>
 						<TextField label="Wallet address" showFloatingLabel outerStyle="margin-left: 2em; margin-right: 2em;" onChange={(e) => this.onAddressChange(e)}/>
 						
 						{ this.state.txId && <p style="margin: 0 2em;">
@@ -100,7 +100,7 @@ export default class App extends Component {
 							onChange={(res) => this.onReCaptchaChange(res)}
 						></ReCaptcha>
 						
-						<Button className="mdc-button--raised" style="margin: 2em;" onClick={() => this.onGet10ZilClick()} disabled={this.state.loading}>Get 10 ZIL</Button>
+						<Button className="mdc-button--raised" style="margin: 2em;" onClick={() => this.onGet10ZilClick()} disabled={this.state.loading}>Get 1000 ZIL</Button>
 
 						{this.state.loading && <LinearProgress className="mdc-linear-progress--indeterminate"></LinearProgress>}
 					</Card>
