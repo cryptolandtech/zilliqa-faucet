@@ -100,7 +100,7 @@ export default class App extends Component {
 							onChange={(res) => this.onReCaptchaChange(res)}
 						></ReCaptcha>
 						
-						<Button className="mdc-button--raised" style="margin: 2em;" onClick={() => this.onGet10ZilClick()} disabled={this.state.loading}>Get 1000 ZIL</Button>
+						<Button className="mdc-button--raised" style="margin: 2em;" onClick={() => this.onGet10ZilClick()} disabled={this.state.loading}>Get 5000 ZIL</Button>
 
 						{this.state.loading && <LinearProgress className="mdc-linear-progress--indeterminate"></LinearProgress>}
 					</Card>
