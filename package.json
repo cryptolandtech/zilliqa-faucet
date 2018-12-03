@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "",
+    "start": "npm run dev:api & npm run dev:ui",
     "build:ui": "preact build",
     "build": "npm run build:ui; docker build -t zilliqa-faucet .",
     "serve": "npm run build:docker; docker run -ti -p 8080:8080 zilliqa-faucet node index.js",
@@ -38,18 +38,20 @@
   },
   "dependencies": {
     "dotenv": "^6.0.0",
+    "express": "^4.16.4",
+    "firebase-functions": "^2.1.0",
     "koa": "^2.5.2",
     "koa-bodyparser": "^4.2.1",
     "koa-route": "^3.2.0",
     "koa-static": "^5.0.0",
+    "moonlet-core": "git+https://github.com/cryptolandtech/moonlet-core.git",
     "preact": "^8.2.1",
     "preact-compat": "^3.17.0",
     "preact-google-recaptcha": "^0.2.1",
     "preact-material-components": "^1.4.3",
     "preact-router": "^2.5.5",
     "react-google-recaptcha": "^0.14.0",
-    "recaptcha-validator": "^2.0.0",
-    "zilliqa-js": "^0.0.1"
+    "recaptcha-validator": "^2.0.0"
   },
   "browserslist": [
     "> 1%",

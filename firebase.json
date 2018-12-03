@@ -1,0 +1,21 @@
+{
+  "hosting": {
+    "public": "build",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "predeploy": "npm run build:ui",
+    "rewrites": [
+        {
+            "source": "/api/faucet/**",
+            "function": "faucet"
+        },
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
