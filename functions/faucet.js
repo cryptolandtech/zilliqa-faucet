@@ -1,14 +1,13 @@
 const recaptcha = require('recaptcha-validator');
+const moonlet = require("moonlet-core/dist/lib");
+const zilliqaBlockchain = require("moonlet-core/dist/lib/blockchain/zilliqa/class.index").default;
+const networksZil = require('moonlet-core/dist/lib/blockchain/zilliqa/networks').default;
+const { ZilliqaAccount } = require('moonlet-core/dist/lib/blockchain/zilliqa/account');
 
 module.exports = faucet;
 
-function faucet(NODE_URL, WALLET_MNEMONICS, RECAPTCHA_SECRET, TRANSFER_AMOUNT) {
-    // import moonlet core
-    const moonlet = require("moonlet-core/dist/lib");
-    const zilliqaBlockchain = require("moonlet-core/dist/lib/blockchain/zilliqa/class.index").default;
-
+function faucet(NODE_URL, WALLET_MNEMONICS, PRIVATE_KEY, RECAPTCHA_SECRET, TRANSFER_AMOUNT) {
     // setup node url
-    const networksZil = require('moonlet-core/dist/lib/blockchain/zilliqa/networks').default;
     networksZil[0] = networksZil[1];
     networksZil[0].url = NODE_URL; 
 
@@ -16,7 +15,20 @@ function faucet(NODE_URL, WALLET_MNEMONICS, RECAPTCHA_SECRET, TRANSFER_AMOUNT) {
     const wallet = new moonlet.Wallet(WALLET_MNEMONICS);
     wallet.loadBlockchain(zilliqaBlockchain);
     const blockchain = wallet.getBlockchain("ZILLIQA");
-    const account = blockchain.createAccount();
+    
+    let account;
+    if (PRIVATE_KEY) {
+        account = new ZilliqaAccount({
+            node: blockchain.getNode(), 
+            privateKey: PRIVATE_KEY,
+            type: "LOOSE"
+        });
+
+        account.publicKey = account.utils.privateToPublic(Buffer.from(PRIVATE_KEY, "hex")).toString("hex");
+        account.address = account.utils.privateToAddress(Buffer.from(PRIVATE_KEY, "hex")).toString("hex");
+    } else {
+        account = blockchain.createAccount();
+    }
 
     async function sendTokens(address) {
         address = (address || "").replace(/^0x/i, "");
@@ -32,6 +44,8 @@ function faucet(NODE_URL, WALLET_MNEMONICS, RECAPTCHA_SECRET, TRANSFER_AMOUNT) {
 
         const nonce = await account.getNonce();
         const tx = account.buildTransferTransaction(address, TRANSFER_AMOUNT, nonce, 10, 100);
+        // console.log(tx);
+        // console.log(account);
         account.signTransaction(tx);
 
         return account.send(tx);

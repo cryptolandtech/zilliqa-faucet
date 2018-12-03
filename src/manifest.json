@@ -1,6 +1,6 @@
 {
-  "name": "zilliqa-preact",
-  "short_name": "zilliqa-preact",
+  "name": "Zilliqa Faucet",
+  "short_name": "Zilliqa Faucet",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",

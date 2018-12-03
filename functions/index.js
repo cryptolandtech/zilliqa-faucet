@@ -10,6 +10,7 @@ app.use(bodyParser.json());
 const faucet = require("./faucet")(
     functions.config().faucet.node_url,
     functions.config().faucet.wallet_mnemonics,
+    functions.config().faucet.wallet_private_key,
     functions.config().faucet.recaptcha_secret,
     functions.config().faucet.transfer_amount
 );
